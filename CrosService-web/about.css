@@ -1,0 +1,77 @@
+video {
+    background-color: #ddd;
+    border-radius: 7px;
+    margin: 10px 0px 0px 10px;
+    width: 480px;
+}
+
+#yourVideo {
+    background-color: #ddd;
+    border-radius: 7px;
+    margin: 300px 0px 0px 10px;
+    width: 120px;
+}
+
+#container {
+    text-align: center;
+}
+
+nav{
+        	background-color:black !important;
+	    }
+		#logo{
+			height:5vh;
+			padding-top:5px;
+		}
+	    .no-margin{
+	            margin:0;
+	    }
+	    .set-padding{
+	        padding-top:1vh;
+	        padding-left:10vw;
+	    }
+	    .full{
+	        width:100vw;
+	        min-height:100vh;
+	        background-color:#eee;
+	        padding-top:10vh;
+	    }
+		.container{
+			overflow:hidden;
+		}
+		.container.card{
+			background-color:white;
+			padding-top:5vh;
+			padding-bottom:5vh;
+			box-shadow:5px 5px 2px #aaaaaa;
+			width:70vw;
+		}
+		.text-center{
+			text-align:center;
+		}
+		.text-padding{
+			padding-left:5vw;
+		}
+		.container .row{
+	        margin-bottom:20px;
+	    }
+		.fixedwidth{
+			width:250px;
+		}
+		.btn.btn-success{
+	        font-size:18px;
+	        background: #ec7063;
+	        border:0;
+    	}
+    	.aboutbtn{
+    		min-width:8vw;
+    		float:right;
+    		margin-left:10px;
+    	}
+		footer{
+			background-color:black;
+			height:8vh;
+			padding-right:10vw;
+			padding-top:10px;
+			color:#aaa;
+		}

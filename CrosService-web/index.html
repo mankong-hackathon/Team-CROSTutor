@@ -6,35 +6,77 @@
  </head>
 
 <body>
-    <div id="container">
-    <div id="firstPage">
+    <header>
+        <nav class="navbar navbar-default no-margin set-padding">
+            <a href="./home.html"><img id="logo" src="./logo.png" alt="logo"></a>
+        </nav>
+    </header>
+    <main class="full">
+        <div id="container">
+        <div id="firstPage">
 
-        <h3>Welcome to <img src="logo.png" alt="Loading" height="42"></h3>
-        Get help from a tutor for your school work immediately<br><br>
-        What's your name?<br>
-        <input type="text" name="FirstName" value=""><br><br>
+            <h1>Welcome to <img src="logo.png" alt="Loading" height="45"></h1>
+            <h4>Get help from a tutor</h4>
 
-        Select the Question level:<br>
-        <select>
-            <option>High School</option>
-            <option>Year 1&2 Undergraduate</option>
-            <option>Year 3&4 Undergraduate</option>
-        </select> <br><br>
-
-        What's the subject?<br>
-        <input type="text" value=""><br><br>
-
-        Enter your question:<br>
-        <textarea rows="4" cols="50"></textarea>
-        <br><br>
-
-        <button onclick="connect()" type="button" class="btn btn-primary btn-lg">
-            Connect with a Tutor Now
-        </button> <br><br>
-    </div>
-    </div>
+            <div class="container containerwidth">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
+                        What's your name?
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <input type="text" name="FirstName" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
+                        Select the Question level:
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <select>
+                            <option>High School</option>
+                            <option>Year 1&2 Undergraduate</option>
+                            <option>Year 3&4 Undergraduate</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
+                        What's the subject?
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <input type="text" value="" list="courses">
+                        <datalist id="courses">
+                            <option value="CHEM">
+                            <option value="ENGL">
+                            <option value="MATH">
+                            <option value="PHYS">
+                            <option value="FMGT">
+                            <option value="ACCT">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left margin-bottom">
+                        Enter your question:
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                        <textarea rows="10" cols="50"></textarea>
+                        <span id="cameraicon" class="glyphicon glyphicon-camera"></span>
+                    </div>
+                </div>
+            </div>
+            <button onclick="connect()" type="button" class="btn btn-success btn-lg">
+                Send Question
+            </button> <br><br>
+        </div>
+        </div>
+    </main>
+    <footer>
+        <p style="float:right;">&reg Crosservice Team</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
-
 
 //this makes sure that our code will work on different browsers
 var RTCPeerConnection = window.webkitRTCPeerConnection;

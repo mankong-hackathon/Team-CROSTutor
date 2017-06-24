@@ -15,3 +15,61 @@ video {
 #container {
     text-align: center;
 }
+
+nav{
+        background-color:black !important;
+    }
+    #logo{
+        height:5vh;
+        padding-top:5px;
+    }
+    .no-margin{
+            margin:0;
+    }
+    .set-padding{
+        padding-top:1vh;
+        padding-left:10vw;
+    }
+    .full{
+        width:100vw;
+        min-height:100vh;
+        background-color:#eee;
+        padding-top:10vh;
+    }
+    .containerwidth{
+        margin-top:5vh;
+        width:45vw;
+    }
+    input, select, textarea{
+        width:100%;
+    }
+    .btn.btn-success{
+        font-size:18px;
+        background: #ec7063;
+        border:0;
+    }
+    .container .row{
+        margin-bottom:20px;
+    }
+    .text-right{
+        text-align: right;
+    }
+    .text-left{
+        text-align: left;
+    }
+    .margin-bottom{
+        margin-bottom:10px;
+    }
+    #cameraicon{
+        font-size:30px;
+        color:lightgrey;
+        margin-top:-40px;
+        margin-right:10px;
+    }
+    footer{
+        background-color:black;
+        height:8vh;
+        padding-right:10vw;
+        padding-top:10px;
+        color:#aaa;
+    }
