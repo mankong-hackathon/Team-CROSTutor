@@ -1,0 +1,17 @@
+video {
+    background-color: #ddd;
+    border-radius: 7px;
+    margin: 10px 0px 0px 10px;
+    width: 480px;
+}
+
+#yourVideo {
+    background-color: #ddd;
+    border-radius: 7px;
+    margin: 300px 0px 0px 10px;
+    width: 120px;
+}
+
+#container {
+    text-align: center;
+}

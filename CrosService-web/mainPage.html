@@ -1,0 +1,96 @@
+<html>
+ <head>
+     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="index.css">
+ </head>
+
+<body onload="showMyFace()">
+    <div id="container">
+
+    <div id="callPage">
+        <video id="yourVideo" autoplay muted></video>
+        <video id="friendsVideo" autoplay></video>
+        <br />
+        <img src="call.png" alt="Loading..." height="42" width="42" onclick="showFriendsFace();">
+        <img src="mute.png" alt="Loading..." height="42" width="42">
+        <img src="chat.png" alt="Loading..." height="42" width="42">
+        <img src="hangup.png" alt="Loading..." height="42" width="42">
+    </div>
+    </div>
+<script>
+
+
+//this makes sure that our code will work on different browsers
+var RTCPeerConnection = window.webkitRTCPeerConnection;
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyARwfhC7TzT7QYilLxWhPv5s6tQVlaPtG8",
+    authDomain: "crosservicetest.firebaseapp.com",
+    databaseURL: "https://crosservicetest.firebaseio.com",
+    projectId: "crosservicetest",
+    storageBucket: "crosservicetest.appspot.com",
+    messagingSenderId: "853810645485"
+};
+
+firebase.initializeApp(config);
+
+var database = firebase.database().ref();
+
+var yourVideo = document.getElementById("yourVideo");
+var friendsVideo = document.getElementById("friendsVideo");
+var yourId = Math.floor(Math.random()*1000000000);
+var servers = {
+    'iceServers': [
+        {'urls': 'stun:stun.services.mozilla.com'}, 
+        {'urls': 'stun:stun.l.google.com:19302'}, 
+        {'url': 'stun:turn.quickblox.com','username': 'quickblox','credential': 'baccb97ba2d92d71e26eb9886da5f1e0'},
+        {'url': 'turn:turn.quickblox.com:3478?transport=udp','username': 'quickblox','credential': 'baccb97ba2d92d71e26eb9886da5f1e0'},
+        {'url': 'turn:turn.quickblox.com:3478?transport=tcp','username': 'quickblox','credential': 'baccb97ba2d92d71e26eb9886da5f1e0'}
+    ]};
+    
+var pc = new RTCPeerConnection(servers);
+pc.onicecandidate = (event => event.candidate?sendMessage(yourId, JSON.stringify({'ice': event.candidate})):console.log("Sent All Ice") );
+pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
+
+function sendMessage(senderId, data) {
+    var msg = database.push({ sender: senderId, message: data });
+    msg.remove();
+}
+
+function readMessage(data) {
+    var msg = JSON.parse(data.val().message);
+    var sender = data.val().sender;
+    if (sender != yourId) {
+    if (msg.ice != undefined)
+        pc.addIceCandidate(new RTCIceCandidate(msg.ice));
+    else if (msg.sdp.type == "offer")
+        pc.setRemoteDescription(new RTCSessionDescription(msg.sdp))
+            .then(() => pc.createAnswer())
+            .then(answer => pc.setLocalDescription(answer))
+            .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})));
+    else if (msg.sdp.type == "answer")
+        pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
+    }
+};
+
+database.on('child_added', readMessage);
+
+function showMyFace() {
+    navigator.mediaDevices.getUserMedia({audio:true, video:true})
+        .then(stream => document.getElementById("yourVideo").srcObject = stream)
+        .then(stream => pc.addStream(stream));
+}
+
+function showFriendsFace() {
+    console.log("friends");
+    pc.createOffer()
+        .then(offer => pc.setLocalDescription(offer) )
+        .then(() => sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
+}
+
+</script>
+</body>
+</html>
